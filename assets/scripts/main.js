@@ -1,4 +1,4 @@
-import './recipe-card.js';
+import './RecipeCard.js';
 
 // Part 1: Expose (A1–A11)
 async function getRecipes() {
