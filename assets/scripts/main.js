@@ -65,41 +65,38 @@ function initializeServiceWorker() {
  * @returns {Array<Object>} An array of recipes found in localStorage
  */
 async function getRecipes() {
-  // EXPOSE - START (All expose numbers start with A)
-  // A1. TODO - Check local storage to see if there are any recipes.
-  //            If there are recipes, return them.
-  /**************************/
-  // The rest of this method will be concerned with requesting the recipes
-  // from the network
-  // A2. TODO - Create an empty array to hold the recipes that you will fetch
-  // A3. TODO - Return a new Promise. If you are unfamiliar with promises, MDN
-  //            has a great article on them. A promise takes one parameter - A
-  //            function (we call these callback functions). That function will
-  //            take two parameters - resolve, and reject. These are functions
-  //            you can call to either resolve the Promise or Reject it.
-  /**************************/
-  // A4-A11 will all be *inside* the callback function we passed to the Promise
-  // we're returning
-  /**************************/
-  // A4. TODO - Loop through each recipe in the RECIPE_URLS array constant
-  //            declared above
-  // A5. TODO - Since we are going to be dealing with asynchronous code, create
-  //            a try / catch block. A6-A9 will be in the try portion, A10-A11
-  //            will be in the catch portion.
-  // A6. TODO - For each URL in that array, fetch the URL - MDN also has a great
-  //            article on fetch(). NOTE: Fetches are ASYNCHRONOUS, meaning that
-  //            you must either use "await fetch(...)" or "fetch.then(...)". This
-  //            function is using the async keyword so we recommend "await"
-  // A7. TODO - For each fetch response, retrieve the JSON from it using .json().
-  //            NOTE: .json() is ALSO asynchronous, so you will need to use
-  //            "await" again
-  // A8. TODO - Add the new recipe to the recipes array
-  // A9. TODO - Check to see if you have finished retrieving all of the recipes,
-  //            if you have, then save the recipes to storage using the function
-  //            we have provided. Then, pass the recipes array to the Promise's
-  //            resolve() method.
-  // A10. TODO - Log any errors from catch using console.error
-  // A11. TODO - Pass any errors to the Promise's reject() function
+  const localKey = 'recipes';
+  // 1) Try to read from localStorage
+  const cached = localStorage.getItem(localKey);
+  if (cached) {
+    try {
+      return JSON.parse(cached);
+    } catch (_) {
+      // if parse fails, fall through to re-fetch
+    }
+  }
+
+  const recipeFiles = [
+    '/recipes/0.json',
+    '/recipes/1.json',
+    '/recipes/2.json',
+    // …add as many as you have in /recipes
+  ];
+  const fetches = recipeFiles.map(path => fetch(path).then(r => r.json()));
+  const recipes = await Promise.all(fetches);
+
+  // 3) Store in localStorage and return
+  localStorage.setItem(localKey, JSON.stringify(recipes));
+  return recipes;
+}
+
+// --- leave your existing render logic alone ---
+// e.g. window.addEventListener('DOMContentLoaded', async () => {
+//   const recipes = await getRecipes();
+//   addRecipesToDocument(recipes);
+//   initializeServiceWorker();
+// });
+
 }
 
 /**
@@ -111,13 +108,6 @@ function saveRecipesToStorage(recipes) {
   localStorage.setItem('recipes', JSON.stringify(recipes));
 }
 
-/**
- * Takes in an array of recipes and for each recipe creates a
- * new <recipe-card> element, adds the recipe data to that card
- * using element.data = {...}, and then appends that new recipe
- * to <main>
- * @param {Array<Object>} recipes An array of recipes
- */
 function addRecipesToDocument(recipes) {
   if (!recipes) return;
   let main = document.querySelector('main');
