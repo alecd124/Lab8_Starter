@@ -22,7 +22,7 @@ const ASSETS_TO_CACHE = [
   '/recipes/2_roasting-turkey-breast-with-stuffing.json',
   '/recipes/3_moms-cornbread-stuffing.json',
   '/recipes/4_50-indulgent-thanksgiving-side-dishes-for-any-holiday-gathering.json',
-  '/recipes/5_healthy-thanksgiving-recipe-crockpot-turkey-breast.json'
+  '/recipes/5_healthy-thanksgiving-recipe-crockpot-turkey-breast.json',
   '/recipes/6_one-pot-thanksgiving-dinner.json'
 ];
 
