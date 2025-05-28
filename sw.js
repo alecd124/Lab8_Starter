@@ -4,12 +4,22 @@ const ASSETS_TO_CACHE = [
   '/index.html',
   '/manifest.json',       // PWA manifest
   '/sw.js',               // service worker script
+
+  // Icon assets
+  '/assets/images/icons/0-star.svg',
+  '/assets/images/icons/1-star.svg',
+  '/assets/images/icons/2-star.svg',
+  '/assets/images/icons/3-star.svg',
+  '/assets/images/icons/4-star.svg',
+  '/assets/images/icons/5-star.svg',
+  '/assets/images/icons/arrow-down.png',
+
+  // App shell
   '/assets/scripts/main.js',
-  '/assets/scripts/recipe-card.js',
+  '/assets/scripts/RecipeCard.js',
   '/assets/styles/main.css',
-  '/assets/images/icons/icon-192.png',
-  '/assets/images/icons/icon-512.png',
-  // Pre-cache all recipe JSON files
+
+  // Recipe data
   '/recipes/1_50-thanksgiving-side-dishes.json',
   '/recipes/2_roasting-turkey-breast-with-stuffing.json',
   '/recipes/3_moms-cornbread-stuffing.json',
