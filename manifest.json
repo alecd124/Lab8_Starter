@@ -1,11 +1,11 @@
 {
-    "name": "",
-    "short_name": "",
+    "name": "Alec",
+    "short_name": "AJ",
     "description": "",
-    "start_url": "",
-    "display": "",
-    "background_color": "",
-    "theme_color": "",
+    "start_url": "/index.html",
+    "display": "standalone",
+    "background_color": "purple",
+    "theme_color": "blue",
     "icons": [
       {
         "src": "/assets/images/icons/icon-192x192.png",
