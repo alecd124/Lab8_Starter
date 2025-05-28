@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lab 8 - Network & ServiceWorkers</title>
+  <title>Lab 8 – Network & ServiceWorkers</title>
 
   <!-- Turkey Favicon -->
   <link rel="icon"
@@ -13,14 +13,34 @@
   <!-- Recipe Card Custom Element -->
   <script src="assets/scripts/RecipeCard.js" type="module"></script>
 
-  <!-- Main Stylesheets & Scripts -->
+  <!-- Main Stylesheet -->
   <link rel="stylesheet" href="assets/styles/main.css" />
+  <!-- Main App Logic -->
   <script src="assets/scripts/main.js" type="module"></script>
+
+  <!-- PWA Manifest & Theme Color -->
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#3f51b5" />
 </head>
 <body>
   <main>
-    <!-- Add Recipes Here -->
+    <!-- Recipe cards will be injected here -->
   </main>
-  
+
+  <!-- Service Worker Registration -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker
+          .register('/sw.js')
+          .then(reg => console.log('SW registered:', reg.scope))
+          .catch(err => console.error('SW failed:', err));
+      });
+
+      navigator.serviceWorker.addEventListener('controllerchange', () => {
+        window.location.reload();
+      });
+    }
+  </script>
 </body>
 </html>
