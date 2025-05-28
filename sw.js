@@ -3,21 +3,13 @@ const ASSETS_TO_CACHE = [
   '/',                    // alias for index.html
   '/index.html',
   '/manifest.json',       // PWA manifest
-  '/sw.js',               // service worker itself
-  '/assets/images/icons/0-star.svg',
-  '/assets/images/icons/1-star.svg',
-  '/assets/images/icons/2-star.svg',
-  '/assets/images/icons/3-star.svg',
-  '/assets/images/icons/4-star.svg',
-  '/assets/images/icons/5-star.svg',
-  '/assets/images/icons/arrow-down.png',
+  '/sw.js',               // service worker script
   '/assets/scripts/main.js',
-  '/assets/scripts/RecipeCard.js',
+  '/assets/scripts/recipe-card.js',
   '/assets/styles/main.css',
-  '/assets/images/icons/icon-192x192.png',
-  '/assets/images/icons/icon-256x256.png',
-  '/assets/images/icons/icon-384x384.png',
-  '/assets/images/icons/icon-512x512.png',
+  '/assets/images/icons/icon-192.png',
+  '/assets/images/icons/icon-512.png',
+  // Pre-cache all recipe JSON files
   '/recipes/1_50-thanksgiving-side-dishes.json',
   '/recipes/2_roasting-turkey-breast-with-stuffing.json',
   '/recipes/3_moms-cornbread-stuffing.json',
@@ -50,14 +42,11 @@ self.addEventListener('activate', event => {
 
 // Fetch event: serve from cache, fall back to network & cache the result
 self.addEventListener('fetch', event => {
-  // Only handle GET requests
   if (event.request.method !== 'GET') return;
 
   event.respondWith(
     caches.match(event.request).then(cachedResponse => {
-      if (cachedResponse) {
-        return cachedResponse;
-      }
+      if (cachedResponse) return cachedResponse;
       return fetch(event.request).then(networkResponse => {
         return caches.open(CACHE_NAME).then(cache => {
           cache.put(event.request, networkResponse.clone());
