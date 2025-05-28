@@ -1,31 +1,29 @@
 const CACHE_NAME = 'lab-8-starter';
 const ASSETS_TO_CACHE = [
-  '/',                    // alias for index.html
-  '/index.html',
-  '/manifest.json',       // PWA manifest
-  '/sw.js',               // service worker script
+  'index.html',
+  'manifest.json',       // PWA manifest
+  'sw.js',               // service worker script
 
-  // Icon assets
-  '/assets/images/icons/0-star.svg',
-  '/assets/images/icons/1-star.svg',
-  '/assets/images/icons/2-star.svg',
-  '/assets/images/icons/3-star.svg',
-  '/assets/images/icons/4-star.svg',
-  '/assets/images/icons/5-star.svg',
-  '/assets/images/icons/arrow-down.png',
+  'assets/images/icons/0-star.svg',
+  'assets/images/icons/1-star.svg',
+  'assets/images/icons/2-star.svg',
+  'assets/images/icons/3-star.svg',
+  'assets/images/icons/4-star.svg',
+  'assets/images/icons/5-star.svg',
+  'assets/images/icons/arrow-down.png',
 
   // App shell
-  '/assets/scripts/main.js',
-  '/assets/scripts/RecipeCard.js',
-  '/assets/styles/main.css',
+  'assets/scripts/main.js',
+  'assets/scripts/RecipeCard.js',
+  'assets/styles/main.css',
 
   // Recipe data
-  '/recipes/1_50-thanksgiving-side-dishes.json',
-  '/recipes/2_roasting-turkey-breast-with-stuffing.json',
-  '/recipes/3_moms-cornbread-stuffing.json',
-  '/recipes/4_50-indulgent-thanksgiving-side-dishes-for-any-holiday-gathering.json',
-  '/recipes/5_healthy-thanksgiving-recipe-crockpot-turkey-breast.json',
-  '/recipes/6_one-pot-thanksgiving-dinner.json'
+  'recipes/1_50-thanksgiving-side-dishes.json',
+  'recipes/2_roasting-turkey-breast-with-stuffing.json',
+  'recipes/3_moms-cornbread-stuffing.json',
+  'recipes/4_50-indulgent-thanksgiving-side-dishes-for-any-holiday-gathering.json',
+  'recipes/5_healthy-thanksgiving-recipe-crockpot-turkey-breast.json',
+  'recipes/6_one-pot-thanksgiving-dinner.json'
 ];
 
 // Install event: cache app shell & recipe data
